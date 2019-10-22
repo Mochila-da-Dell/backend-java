@@ -47,7 +47,10 @@ public class TokenMateriaResource {
 		
 		String token = "MAT" + numero;
 		
-		TokenMateria tokenSalvo = tokenMateriaRepository.save(token);
+		TokenMateria tokenMateria = new TokenMateria(token, True);
+		
+		
+		TokenMateria tokenSalvo = tokenMateriaRepository.save(tokenMateria);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
 	}
 	/*

@@ -1,6 +1,7 @@
 package br.usjt.resource;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,7 +40,15 @@ public class TokenChamadaResource {
 	*/
 	@PostMapping("/cadastrar")
 	public ResponseEntity<TokenChamada> cadastrar(@RequestBody TokenChamada token, HttpServletResponse response){
-		TokenChamada tokenSalvo = tokenChamadaRepository.save(token);
+		
+		Random random = new Random();
+		int numero = random.nextInt(10) * 1000000;
+		
+		String token = "CHM" + numero;
+		
+		TokenChamada tokenChamada = new TokenChamada(token, True);
+		
+		TokenChamada tokenSalvo = tokenChamadaRepository.save(tokenChamada);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
 	}
 	
