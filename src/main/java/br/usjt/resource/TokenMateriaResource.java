@@ -1,6 +1,7 @@
 package br.usjt.resource;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,8 +39,14 @@ public class TokenMateriaResource {
 	}
 	*/
 	
-	@PostMapping
-	public ResponseEntity<TokenMateria> criar(@RequestBody TokenMateria token, HttpServletResponse response){
+	@PostMapping("/cadastrar")
+	public ResponseEntity<TokenMateria> criar(HttpServletResponse response){
+		
+		Random random = new Random();
+		int numero = random.nextInt(10) * 1000000;
+		
+		String token = "MAT" + numero;
+		
 		TokenMateria tokenSalvo = tokenMateriaRepository.save(token);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
 	}
