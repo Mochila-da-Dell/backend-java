@@ -39,6 +39,7 @@ public class TokenChamadaResource {
 		
 		String token = "CHM" + numero;
 		System.out.println("eee::::::::::::::::::::::::::::::::" +token);
+		
 		boolean ativo = true;
 		TokenChamada tokenChamada = new TokenChamada(token, ativo);
 		TokenChamada tokenSalvo = tokenChamadaRepository.save(tokenChamada);

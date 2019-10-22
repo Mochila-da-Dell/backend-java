@@ -29,10 +29,8 @@ public class TokenMateria {
 	@JoinColumn(name="id_materia")
 	private Materia materia;
 
-	public TokenMateria(Long id, @NotNull @Size(min = 10, max = 10) String token, @NotNull boolean ativo,
-			@NotNull Materia materia) {
-		super();
-		this.id = id;
+	public TokenMateria(@NotNull @Size(min = 10, max = 10) String token, @NotNull boolean ativo, @NotNull Materia materia) {
+
 		this.token = token;
 		this.ativo = ativo;
 		this.materia = materia;
