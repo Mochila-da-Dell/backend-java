@@ -42,13 +42,13 @@ public class CursoResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(cursoSalvo);
 	}
 	
-	@PutMapping("/atualizar/{codigo}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Curso> atualizar(@PathVariable Long id,  @RequestBody Curso curso) throws Exception{
 		Curso cursoSalvo = cursoService.atualizar(id, curso);
 		return ResponseEntity.ok(cursoSalvo);	
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/del/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		cursoRepository.deleteById(id);

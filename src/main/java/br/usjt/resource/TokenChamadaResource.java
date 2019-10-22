@@ -31,26 +31,30 @@ public class TokenChamadaResource {
 	@Autowired
 	private TokenChamadaService tokenChamadaService;
 	
+	/*
 	@GetMapping
 	public List<TokenChamada> listar(){
 		return tokenChamadaRepository.findAll();
 	}
-	
+	*/
 	@PostMapping("/cadastrar")
 	public ResponseEntity<TokenChamada> cadastrar(@RequestBody TokenChamada token, HttpServletResponse response){
 		TokenChamada tokenSalvo = tokenChamadaRepository.save(token);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
 	}
 	
+	/*
 	@PutMapping("/atualizar/{codigo}")
 	public ResponseEntity<TokenChamada> atualizar(@PathVariable Long id,  @RequestBody TokenChamada token) throws Exception{
 		TokenChamada tokenSalvo = tokenChamadaService.atualizar(id, token);
 		return ResponseEntity.ok(tokenSalvo);	
 	}
 	
+	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		tokenChamadaRepository.deleteById(id);
 	}
+	*/
 }

@@ -33,13 +33,19 @@ public class UniversidadeResource {
 		return universidadeService.listar();
 	}
 	
-	@PutMapping("/atualizar/{codigo}")
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Universidade> cadastrar(@RequestBody Universidade universidade, HttpServletResponse response){
+		Universidade universidadeSalva = universidadeRepository.save(universidade);
+		return ResponseEntity.status(HttpStatus.CREATED).body(universidadeSalva);
+	}
+	
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Universidade> atualizar(@PathVariable Long codigo,  @RequestBody Universidade universidade) throws Exception{
 		Universidade universidadeSalva = universidadeService.atualizar(codigo, universidade);
 		return ResponseEntity.ok(universidadeSalva);	
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/del/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		universidadeRepository.deleteById(id);

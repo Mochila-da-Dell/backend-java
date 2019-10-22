@@ -31,7 +31,7 @@ public class TurmaResource {
 	@Autowired
 	private TurmaService turmaService;
 
-	@GetMapping
+	@GetMapping("/listar")
 	public List<Turma> listar(){
 		return turmaRepository.findAll();
 	}
@@ -42,13 +42,13 @@ public class TurmaResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(turmaSalva);
 	}
 	
-	@PutMapping("/atualizar/{codigo}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Turma> atualizar(@PathVariable Long id,  @RequestBody Turma turma) throws Exception{
 		Turma turmaSalva = turmaService.atualizar(id, turma);
 		return ResponseEntity.ok(turmaSalva);	
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/del/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		turmaRepository.deleteById(id);

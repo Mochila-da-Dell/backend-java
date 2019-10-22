@@ -31,7 +31,7 @@ public class ProfessorResource {
 	@Autowired
 	private ProfessorService professorService;
 	
-	@GetMapping
+	@GetMapping("/listar")
 	public List<Professor> listar(){
 		return professorRepository.findAll();
 		
@@ -43,13 +43,13 @@ public class ProfessorResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(professorSalvo);
 	}
 	
-	@PutMapping("/atualizar/{codigo}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Professor> atualizar(@PathVariable Long id,  @RequestBody Professor professor) throws Exception{
 		Professor professorSalvo = professorService.atualizar(id, professor);
 		return ResponseEntity.ok(professorSalvo);	
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/del/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		professorRepository.deleteById(id);

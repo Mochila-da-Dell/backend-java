@@ -31,17 +31,19 @@ public class TokenMateriaResource {
 	@Autowired
 	private TokenMateriaRepository tokenMateriaRepository;
 	
+	/*
 	@GetMapping
 	public List<TokenMateria> listar(){
 		return tokenMateriaRepository.findAll();
 	}
+	*/
 	
 	@PostMapping
 	public ResponseEntity<TokenMateria> criar(@RequestBody TokenMateria token, HttpServletResponse response){
 		TokenMateria tokenSalvo = tokenMateriaRepository.save(token);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
 	}
-	
+	/*
 	@PutMapping("/atualizar/{codigo}")
 	public ResponseEntity<TokenMateria> atualizar(@PathVariable Long id,  @RequestBody TokenMateria token) throws Exception{
 		TokenMateria tokenSalvo = tokenMateriaService.atualizar(id, token);
@@ -54,6 +56,6 @@ public class TokenMateriaResource {
 		tokenMateriaRepository.deleteById(id);
 	}
 	
-	
+	*/
 
 }

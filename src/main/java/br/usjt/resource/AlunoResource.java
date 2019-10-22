@@ -31,7 +31,7 @@ public class AlunoResource {
 	@Autowired
 	private AlunoService alunoService;
 	
-	@GetMapping
+	@GetMapping("/listar")
 	public List<Aluno> listar(){
 		return alunoRepository.findAll();
 	}
@@ -42,13 +42,13 @@ public class AlunoResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(alunoSalvo);
 	}
 	
-	@PutMapping("/atualizar/{codigo}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Aluno> atualizar(@PathVariable Long id,  @RequestBody Aluno aluno) throws Exception{
 		Aluno alunoSalvo = alunoService.atualizar(id, aluno);
 		return ResponseEntity.ok(alunoSalvo);	
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/del/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		alunoRepository.deleteById(id);

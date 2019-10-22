@@ -31,7 +31,7 @@ public class LoginResource {
 	@Autowired
 	private LoginService loginService;
 	
-	@GetMapping
+	@GetMapping("/listar")
 	public List<Login> listar(){
 		return loginRepository.findAll();
 	}
@@ -42,13 +42,13 @@ public class LoginResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(loginSalvo);
 	}
 	
-	@PutMapping("/atualizar/{codigo}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Login> atualizar(@PathVariable Long id,  @RequestBody Login login) throws Exception{
 		Login loginSalvo = loginService.atualizar(id, login);
 		return ResponseEntity.ok(loginSalvo);	
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/del/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		loginRepository.deleteById(id);

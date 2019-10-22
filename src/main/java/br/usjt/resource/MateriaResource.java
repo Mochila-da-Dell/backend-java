@@ -31,25 +31,25 @@ public class MateriaResource {
 	@Autowired
 	private MateriaRepository materiaRepository;
 	
-	@GetMapping
+	@GetMapping("/listar")
 	public List<Materia> listar(){
 		return materiaRepository.findAll();
 	}
 	
-	@PostMapping
+	@PostMapping("/cadastrar")
 	public ResponseEntity<Materia> criar(@RequestBody Materia materia, HttpServletResponse response){
 		Materia materiaSalva = materiaRepository.save(materia);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(materiaSalva);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Materia> atualizar (@PathVariable Long id, @RequestBody Materia materia) throws Exception{
 		Materia materiaSalva = materiaService.atualizar(id, materia);
 		return ResponseEntity.ok(materiaSalva);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("del/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id){
 	  materiaRepository.deleteById(id);
