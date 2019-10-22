@@ -39,20 +39,20 @@ public class TokenMateriaResource {
 	}
 	*/
 	
-	@PostMapping("/cadastrar")
-	public ResponseEntity<TokenMateria> criar(HttpServletResponse response){
-		
-		Random random = new Random();
-		int numero = random.nextInt(10) * 1000000;
-		
-		String token = "MAT" + numero;
-		
-		TokenMateria tokenMateria = new TokenMateria(token, True);
-		
-		
-		TokenMateria tokenSalvo = tokenMateriaRepository.save(tokenMateria);
-		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
-	}
+//	@PostMapping("/cadastrar")
+//	public ResponseEntity<TokenMateria> criar(HttpServletResponse response){
+//		
+//		Random random = new Random();
+//		int numero = random.nextInt(10) * 1000000;
+//		
+//		String token = "MAT" + numero;
+//		boolean ativo = true;
+//		TokenMateria tokenMateria = new TokenMateria(token, ativo);
+//		
+//		
+//		TokenMateria tokenSalvo = tokenMateriaRepository.save(tokenMateria);
+//		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
+//	}
 	/*
 	@PutMapping("/atualizar/{codigo}")
 	public ResponseEntity<TokenMateria> atualizar(@PathVariable Long id,  @RequestBody TokenMateria token) throws Exception{

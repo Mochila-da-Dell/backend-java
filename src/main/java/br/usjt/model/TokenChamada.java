@@ -23,14 +23,13 @@ public class TokenChamada {
 	@NotNull
 	private boolean ativo;
 	
-	public TokenMateria(Long id, @NotNull @Size(min = 10, max = 10) String token, @NotNull boolean ativo) {
-		super();
-		this.id = id;
+	public TokenChamada( @NotNull @Size(min = 10, max = 10) String token, @NotNull boolean ativo) {
+		
 		this.token = token;
 		this.ativo = ativo;
 	}
 	
-	public TokenMateria() {
+	public TokenChamada() {
 		
 	}
 	
@@ -91,17 +90,5 @@ public class TokenChamada {
 			return false;
 		return true;
 	}
-	
-	public TokenChamada() {
-
-	}
-
-	public TokenChamada(Long id, @NotNull @Size(min = 10, max = 10) String token, @NotNull boolean ativo) {
-		super();
-		this.id = id;
-		this.token = token;
-		this.ativo = ativo;
-	}
-	
 	
 }
