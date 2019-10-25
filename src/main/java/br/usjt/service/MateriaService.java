@@ -21,7 +21,7 @@ public class MateriaService {
 
 	}
 
-	private Materia buscarMateriaPorId(Long id) throws Exception {
+	public Materia buscarMateriaPorId(Long id) throws Exception {
 		Materia materiaSalva = materiaRepository.getOne(id);
 		if (materiaSalva == null) {
 			throw new Exception();

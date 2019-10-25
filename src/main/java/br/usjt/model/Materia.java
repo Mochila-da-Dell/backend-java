@@ -10,7 +10,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="materia")
 public class Materia {
 	
@@ -46,6 +49,15 @@ public class Materia {
 		this.professor = professor;
 	}
 	
+	
+	
+	public Materia(Long id) {
+		super();
+		this.id = id;
+	}
+
+
+
 	public Materia() {
 		
 	}
