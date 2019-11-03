@@ -36,6 +36,11 @@ public class LoginResource {
 		return loginRepository.findAll();
 	}
 	
+	@GetMapping("/listar/{id}")
+	public Login listarUm(@PathVariable Long id) throws Exception{
+		return loginRepository.getOne(id);
+	}
+	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Login> cadastrar(@RequestBody Login login, HttpServletResponse response){
 		Login loginSalvo = loginRepository.save(login);

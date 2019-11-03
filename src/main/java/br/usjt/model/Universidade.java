@@ -8,10 +8,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="universidade")
 public class Universidade {
 	
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -36,7 +41,10 @@ public class Universidade {
 	@Size(min = 3, max =300)
 	private String endereco;
 	
-	
+	public Universidade(Long id) {
+		
+		this.id = id;
+	}
 	
 	public Long getId() {
 		return id;

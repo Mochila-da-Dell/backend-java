@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.usjt.model.Login;
 import br.usjt.model.Professor;
 import br.usjt.repository.ProfessorRepository;
+import br.usjt.service.LoginService;
 import br.usjt.service.ProfessorService;
 
 @RestController
@@ -31,14 +33,25 @@ public class ProfessorResource {
 	@Autowired
 	private ProfessorService professorService;
 	
+	@Autowired
+	private LoginService loginService;
+	
 	@GetMapping("/listar")
 	public List<Professor> listar(){
 		return professorRepository.findAll();
-		
 	}
 	
+	@GetMapping("/listar/{id}")
+	public Professor listarUm(@PathVariable Long id) throws Exception{
+		return professorRepository.getOne(id);
+	}
+	
+	
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Professor> cadastrar(@RequestBody Professor professor, HttpServletResponse response){
+	public ResponseEntity<Professor> cadastrar(@RequestBody Professor professor, HttpServletResponse response) throws Exception{
+		
+		Login login = loginService.buscarLoginPorId(professor.getLogin().getId());
+		professor.setLogin(login);
 		Professor professorSalvo = professorRepository.save(professor);
 		return ResponseEntity.status(HttpStatus.CREATED).body(professorSalvo);
 	}

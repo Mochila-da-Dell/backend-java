@@ -36,6 +36,11 @@ public class UniversidadeResource {
 		return universidadeService.listar();
 	}
 	
+	@GetMapping("/listar/{id}")
+	public Universidade listarUm(@PathVariable Long id) throws Exception{
+		return universidadeRepository.getOne(id);
+	}
+	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Universidade> cadastrar(@RequestBody Universidade universidade, HttpServletResponse response){
 		Universidade universidadeSalva = universidadeRepository.save(universidade);
@@ -43,8 +48,8 @@ public class UniversidadeResource {
 	}
 	
 	@PutMapping("/atualizar/{id}")
-	public ResponseEntity<Universidade> atualizar(@PathVariable Long codigo,  @RequestBody Universidade universidade) throws Exception{
-		Universidade universidadeSalva = universidadeService.atualizar(codigo, universidade);
+	public ResponseEntity<Universidade> atualizar(@PathVariable Long id,  @RequestBody Universidade universidade) throws Exception{
+		Universidade universidadeSalva = universidadeService.atualizar(id, universidade);
 		return ResponseEntity.ok(universidadeSalva);	
 	}
 	

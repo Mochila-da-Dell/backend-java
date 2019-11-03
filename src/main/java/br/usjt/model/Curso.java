@@ -8,7 +8,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="curso")
 public class Curso {
 	
@@ -30,6 +33,13 @@ public class Curso {
 	public Curso(){
 		
 	}
+	
+
+	public Curso(Long id) {
+		super();
+		this.id = id;
+	}
+
 
 	public Curso(Long id, @NotNull @Size(min = 3, max = 50) String nome, @NotNull @Size(min = 3, max = 30) String tipo,
 			@NotNull int duracao) {

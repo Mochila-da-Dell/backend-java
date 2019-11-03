@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.usjt.model.Materia;
+import br.usjt.model.Professor;
+import br.usjt.model.Turma;
 import br.usjt.repository.MateriaRepository;
 import br.usjt.service.MateriaService;
+import br.usjt.service.ProfessorService;
+import br.usjt.service.TurmaService;
 
 @RestController
 @RequestMapping("/materia")
@@ -31,15 +35,31 @@ public class MateriaResource {
 	@Autowired
 	private MateriaRepository materiaRepository;
 	
+	@Autowired
+	private TurmaService turmaService;
+	
+	@Autowired 
+	private ProfessorService professorService;
+	
 	@GetMapping("/listar")
 	public List<Materia> listar(){
 		return materiaRepository.findAll();
 	}
 	
+	@GetMapping("/listar/{id}")
+	public Materia listarUm(@PathVariable Long id) throws Exception{
+		return materiaRepository.getOne(id);
+	}
+	
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Materia> criar(@RequestBody Materia materia, HttpServletResponse response){
-		Materia materiaSalva = materiaRepository.save(materia);
+	public ResponseEntity<Materia> criar(@RequestBody Materia materia, HttpServletResponse response) throws Exception{
+		Turma turma = turmaService.buscarTurmaId(materia.getTurma().getId());
+		Professor professor = professorService.buscarProfessorId(materia.getProfessor().getId());
 		
+		materia.setTurma(turma);
+		materia.setProfessor(professor);
+		
+		Materia materiaSalva = materiaRepository.save(materia);
 		return ResponseEntity.status(HttpStatus.CREATED).body(materiaSalva);
 	}
 	

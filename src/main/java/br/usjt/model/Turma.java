@@ -10,7 +10,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="turma")
 public class Turma {
 	
@@ -35,6 +38,15 @@ public class Turma {
 	public Turma() {
 	
 	}
+	
+	
+
+	public Turma(Long id) {
+		super();
+		this.id = id;
+	}
+
+
 
 	public Turma(Long id, @NotNull @Size(min = 3, max = 15) String nome, @NotNull Universidade universidade,
 			@NotNull Curso curso) {

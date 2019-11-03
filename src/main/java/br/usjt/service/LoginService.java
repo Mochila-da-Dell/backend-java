@@ -14,13 +14,13 @@ public class LoginService {
 	private LoginRepository loginRepository;
 	
 	public Login atualizar(Long id, Login login) throws Exception {
-		Login loginSalvo = buscarLoginId(id);
+		Login loginSalvo = buscarLoginPorId(id);
 
 		BeanUtils.copyProperties(login, loginSalvo, "id");
 		return loginRepository.save(loginSalvo);
 	}
 
-	public Login buscarLoginId(Long id) throws Exception {
+	public Login buscarLoginPorId(Long id) throws Exception {
 		Login loginSalvo = loginRepository.getOne(id);
 		if (loginSalvo == null) {
 			throw new Exception();

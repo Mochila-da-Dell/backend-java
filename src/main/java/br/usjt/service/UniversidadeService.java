@@ -21,8 +21,7 @@ public class UniversidadeService {
 	
 	public Universidade atualizar(Long id, Universidade universidade) throws Exception {
 		Universidade universidadeSalva = buscarUniversidadeId(id);
-
-		BeanUtils.copyProperties(universidade, universidadeRepository, "id");
+		BeanUtils.copyProperties(universidade, universidadeSalva, "id");
 		return universidadeRepository.save(universidadeSalva);
 	}
 

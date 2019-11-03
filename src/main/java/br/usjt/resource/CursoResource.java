@@ -36,6 +36,10 @@ public class CursoResource {
 		return cursoService.listar();
 	}
 	
+	@GetMapping("/listar/{id}")
+	public Curso listarUm(@PathVariable Long id) throws Exception{
+		return cursoRepository.getOne(id);
+	}
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Curso> criar( @RequestBody Curso curso, HttpServletResponse response) {
 		Curso cursoSalvo = cursoRepository.save(curso);

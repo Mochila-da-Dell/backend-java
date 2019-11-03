@@ -10,29 +10,32 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name="professor")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "professor")
 public class Professor {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
-	@Size(min = 3, max =100)
+	@Size(min = 3, max = 100)
 	private String nome;
-	
+
 	@NotNull
-	@Size(min=5, max=15)
+	@Size(min = 5, max = 15)
 	private String rap;
-	
+
 	@NotNull
-	@Size(min = 6, max =50)
+	@Size(min = 6, max = 50)
 	private String email;
-	
+
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name="id_login")
+	@JoinColumn(name = "id_login")
 	private Login login;
 
 	public Professor(Long id, @NotNull @Size(min = 3, max = 100) String nome,
@@ -45,9 +48,14 @@ public class Professor {
 		this.email = email;
 		this.login = login;
 	}
-	
+
 	public Professor() {
-		
+
+	}
+
+	public Professor(Long id) {
+
+		this.id = id;
 	}
 
 	@Override
@@ -138,8 +146,5 @@ public class Professor {
 	public void setLogin(Login login) {
 		this.login = login;
 	}
-	
-	
-	
 
 }
