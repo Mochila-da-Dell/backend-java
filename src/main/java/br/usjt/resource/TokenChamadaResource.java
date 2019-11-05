@@ -33,11 +33,21 @@ public class TokenChamadaResource {
 	@PostMapping("/cadastrar")
 	public ResponseEntity<TokenChamada> cadastrar( HttpServletResponse response){
 		
-		Random random = new Random();
-		int numero = random.nextInt(10) * random.nextInt(700000);
+		//Random random = new Random();
+		//int numero = random.nextInt(10) * random.nextInt(700000);
+		//double numero = Math.random() * 10000000;
+		//int valorAleatorio = (int) Math.round(numero);
 		
-		String token = "CHM" + numero;
-		System.out.println("eee::::::::::::::::::::::::::::::::" +token);
+		//String token = "CHM" + valorAleatorio;
+		String token = "";
+		while(token.length() < 10) {
+			double numero = Math.random() * 10000000;
+			int valorAleatorio = (int) Math.round(numero);
+			
+			 token = "CHM" + valorAleatorio;
+		}
+		
+		System.out.println("TOKEN::::::::::::::::::::::::::::::::" +token);
 		
 		boolean ativo = true;
 		TokenChamada tokenChamada = new TokenChamada(token, ativo);

@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.usjt.model.Aluno;
-import br.usjt.model.Login;
 import br.usjt.repository.AlunoRepository;
 import br.usjt.service.AlunoService;
-import br.usjt.service.LoginService;
 
 @RestController
 @RequestMapping("/aluno")
@@ -33,9 +31,9 @@ public class AlunoResource {
 	@Autowired
 	private AlunoService alunoService;
 	
-	@Autowired
+	/*@Autowired
 	private LoginService loginService;
-	
+	*/
 	@GetMapping("/listar")
 	public List<Aluno> listar(){
 		return alunoRepository.findAll();
@@ -48,9 +46,9 @@ public class AlunoResource {
 	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Aluno> cadastrar(@RequestBody Aluno aluno, HttpServletResponse response) throws Exception{
-		Login login = aluno.getLogin();
+		/*Login login = aluno.getLogin();
 		Login loginSalvo = loginService.buscarLoginPorId(login.getId());
-		aluno.setLogin(loginSalvo);
+		aluno.setLogin(loginSalvo);*/
 		Aluno alunoSalvo = alunoRepository.save(aluno);
 		return ResponseEntity.status(HttpStatus.CREATED).body(alunoSalvo);
 	}

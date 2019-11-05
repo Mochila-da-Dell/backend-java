@@ -36,12 +36,23 @@ public class TokenMateriaResource {
 
 	@PostMapping("/cadastrar/{id}")
 	public ResponseEntity<TokenMateria> criar(@PathVariable Long id, HttpServletResponse response) throws Exception {
-		Random random = new Random();
-		int numero = random.nextInt(10) * random.nextInt(700000);
-		String token = "MAT" + numero;
+		
+		//Random random = new Random();
+		//int numero = random.nextInt(10) * random.nextInt(700000);
+		String token = "";
+		while(token.length() < 10) {
+			double numero = Math.random() * 10000000;
+			int valorAleatorio = (int) Math.round(numero);
+			
+			 token = "MAT" + valorAleatorio;
+		}
+		System.out.println("TOKEN:::::::::: " + token);
+		
 		Materia materiaSalva = materiaService.buscarMateriaPorId(id);
+		
 		boolean ativo = true;
 		TokenMateria tokenMateria = new TokenMateria(token, ativo, materiaSalva);
+		
 		TokenMateria tokenSalvo = tokenMateriaRepository.save(tokenMateria);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
 	}
