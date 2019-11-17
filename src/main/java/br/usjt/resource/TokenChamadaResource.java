@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import br.usjt.model.TokenChamada;
 import br.usjt.repository.TokenChamadaRepository;
 import br.usjt.service.TokenChamadaService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/token-chamada")
 public class TokenChamadaResource {
