@@ -1,7 +1,6 @@
 package br.usjt.resource;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +18,7 @@ import br.usjt.model.Materia;
 import br.usjt.model.TokenMateria;
 import br.usjt.repository.TokenMateriaRepository;
 import br.usjt.service.MateriaService;
+import br.usjt.service.TokenMateriaService;
 
 @RestController
 @RequestMapping("/token-materia")
@@ -25,6 +26,9 @@ public class TokenMateriaResource {
 
 	@Autowired
 	private TokenMateriaRepository tokenMateriaRepository;
+	
+	@Autowired
+	private TokenMateriaService tokenMateriaService;
 
 	@Autowired
 	private MateriaService materiaService;
@@ -55,5 +59,14 @@ public class TokenMateriaResource {
 		
 		TokenMateria tokenSalvo = tokenMateriaRepository.save(tokenMateria);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
+	}
+	
+	@PutMapping("/atualizar/{token}")
+	public ResponseEntity<String> atualizar(@PathVariable String token) throws Exception{
+		
+		System.out.println("token " + token);
+
+		tokenMateriaService.atualizar(token);
+		return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"Inativado\"}");
 	}
 }

@@ -26,4 +26,8 @@ public class ProfessorService {
 		}
 		return professorSalvo;
 	}
+
+	public boolean logar(Professor professor) {
+		return professorRepository.findOneByEmailAndSenha(professor.getEmail(), professor.getSenha()) != null;
+	}
 }

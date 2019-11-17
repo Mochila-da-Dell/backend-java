@@ -65,4 +65,17 @@ public class AlunoResource {
 	public void deletar(@PathVariable Long id) {
 		alunoRepository.deleteById(id);
 	}
+	
+	@PostMapping("/fazerLogin")
+	public ResponseEntity<String> fazerLogin(@RequestBody Aluno aluno, HttpServletResponse response) throws Exception{
+		
+		//System.out.println("request " + request);
+		System.out.println("aluno " + aluno.getEmail());
+		
+		if (alunoService.logar(aluno)) {
+			return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"logado\"}");
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"nao logado\"}");
+		}
+	}
 }

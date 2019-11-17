@@ -27,4 +27,9 @@ public class AlunoService {
 		BeanUtils.copyProperties(aluno, alunoSalvo, "id");
 		return alunoRepository.save(alunoSalvo);
 	}
+	
+	public boolean logar(Aluno aluno) {
+		return alunoRepository.findOneByEmailAndSenha(aluno.getEmail(), aluno.getSenha()) != null;
+	}
 }
+

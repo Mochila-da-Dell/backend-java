@@ -65,4 +65,19 @@ public class ProfessorResource {
 	public void deletar(@PathVariable Long id) {
 		professorRepository.deleteById(id);
 	}
+	
+	@PostMapping("/fazerLogin")
+	public ResponseEntity<String> fazerLogin(@RequestBody Professor professor, HttpServletResponse response) throws Exception{
+		
+		//System.out.println("request " + request);
+		System.out.println("professor " + professor.getEmail());
+		
+		if (professorService.logar(professor)) {
+			return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"logado\"}");
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"nao logado\"}");
+		}
+	}
+	
 }
+

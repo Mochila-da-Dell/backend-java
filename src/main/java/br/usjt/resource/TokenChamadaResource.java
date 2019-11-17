@@ -1,7 +1,6 @@
 package br.usjt.resource;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.usjt.model.TokenChamada;
 import br.usjt.repository.TokenChamadaRepository;
+import br.usjt.service.TokenChamadaService;
 
 @RestController
 @RequestMapping("/token-chamada")
@@ -22,6 +24,9 @@ public class TokenChamadaResource {
 	
 	@Autowired
 	private TokenChamadaRepository tokenChamadaRepository;
+	
+	@Autowired
+	private TokenChamadaService tokenChamadaService;
 	
 
 	
@@ -55,5 +60,14 @@ public class TokenChamadaResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenSalvo);
 	}
 	
+	
+	@PutMapping("/atualizar/{token}")
+	public ResponseEntity<String> atualizar(@PathVariable String token) throws Exception{
+		
+		System.out.println("token " + token);
+
+		tokenChamadaService.atualizar(token);
+		return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"Inativado\"}");
+	}
 
 }
