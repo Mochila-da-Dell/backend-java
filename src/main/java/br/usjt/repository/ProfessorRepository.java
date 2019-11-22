@@ -7,5 +7,8 @@ import br.usjt.model.Professor;
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
 	
 	public Professor findOneByEmailAndSenha (String login, String senha);
+	
+	public Professor findByNome(String nome);
+	
 
 }

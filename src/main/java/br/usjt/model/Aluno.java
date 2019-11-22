@@ -86,6 +86,10 @@ public class Aluno {
 	}
 
 	
+	public Aluno(Long id) {
+		this.id =id;
+	}
+	
 	public Aluno() {
 		
 	}

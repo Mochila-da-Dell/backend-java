@@ -22,6 +22,8 @@ import br.usjt.model.Materia;
 import br.usjt.model.Professor;
 import br.usjt.model.Turma;
 import br.usjt.repository.MateriaRepository;
+import br.usjt.repository.ProfessorRepository;
+import br.usjt.repository.TurmaRepository;
 import br.usjt.service.MateriaService;
 import br.usjt.service.ProfessorService;
 import br.usjt.service.TurmaService;
@@ -43,6 +45,13 @@ public class MateriaResource {
 	@Autowired 
 	private ProfessorService professorService;
 	
+	@Autowired
+	private TurmaRepository turmaRepository;
+	
+	@Autowired
+	private ProfessorRepository professorRepository;
+	
+	
 	@GetMapping("/listar")
 	public List<Materia> listar(){
 		return materiaRepository.findAll();
@@ -55,12 +64,13 @@ public class MateriaResource {
 	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Materia> criar(@RequestBody Materia materia, HttpServletResponse response) throws Exception{
-		Turma turma = turmaService.buscarTurmaId(materia.getTurma().getId());
-		Professor professor = professorService.buscarProfessorId(materia.getProfessor().getId());
 		
+		Turma turma = turmaRepository.findByNome(materia.getTurma().getNome());
+		Professor professor = professorRepository.findByNome(materia.getProfessor().getNome());
+		System.out.println("ave" + turma.getNome());
+		System.out.println("maria" + professor.getNome());
 		materia.setTurma(turma);
 		materia.setProfessor(professor);
-		
 		Materia materiaSalva = materiaRepository.save(materia);
 		return ResponseEntity.status(HttpStatus.CREATED).body(materiaSalva);
 	}

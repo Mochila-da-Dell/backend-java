@@ -39,7 +39,9 @@ public class Turma {
 	
 	}
 	
-	
+	public Turma(String nome) {
+		this.nome = nome;
+	}
 
 	public Turma(Long id) {
 		super();

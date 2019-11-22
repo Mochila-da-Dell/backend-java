@@ -77,7 +77,7 @@ public class ProfessorResource {
 		if (professorService.logar(professor)) {
 			return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"logado\"}");
 		} else {
-			return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"nao logado\"}");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\": \"nao logado\"}");
 		}
 	}
 	

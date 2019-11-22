@@ -14,5 +14,7 @@ public interface TokenChamadaRepository extends JpaRepository<TokenChamada, Long
 	@Modifying
 	@Query("UPDATE TokenChamada tk SET tk.ativo = :ativo WHERE tk.token = :token")
 	void updateTokenFlag(@Param("ativo") boolean ativo, @Param("token") String token);
+	
+	public TokenChamada findByToken(String token);
 
 }

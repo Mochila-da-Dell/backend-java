@@ -66,6 +66,15 @@ CREATE TABLE IF NOT EXISTS aluno (
 
 );
 
+CREATE TABLE IF NOT EXISTS chamada (
+	id INTEGER PRIMARY KEY auto_increment,
+	data DATE NOT NULL,
+	id_aluno INTEGER NOT NULL,
+	id_materia INTEGER NOT NULL,
+	CONSTRAINT fk_aluno FOREIGN KEY(id_aluno) REFERENCES aluno(id),
+	CONSTRAINT fk_materia FOREIGN KEY(id_materia) REFERENCES materia(id)
+);
+
 -- Insert Universidade
 INSERT INTO universidade (nome_fantasia, sigla, campus, cnpj, endereco) VALUES ('Universidade São Judas Tadeu', 'USJT', 'Mooca', '123456789101112', 'Rua Taquari - N° 153');
 INSERT INTO universidade (nome_fantasia, sigla, campus, cnpj, endereco) VALUES ('Universidade Nove de Julho', 'UNN', 'Barra funda', '123456781234567', 'Rua São paulo - N° 13');
