@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS aluno (
 CREATE TABLE IF NOT EXISTS chamada (
 	id INTEGER PRIMARY KEY auto_increment,
 	data DATE NOT NULL,
+	presente BOOLEAN NOT NULL,
 	id_aluno INTEGER NOT NULL,
 	id_materia INTEGER NOT NULL,
 	CONSTRAINT fk_aluno FOREIGN KEY(id_aluno) REFERENCES aluno(id),
@@ -100,3 +101,9 @@ INSERT INTO turma (nome, id_universidade, id_curso) VALUES ('ADS2ANMCA1', 1, 5);
 insert into professor (nome,rap,email, senha) values ('Matheus Gonçalves', '818146687','mgsantos@gmail.com', 'nagato01');
 
 insert into materia (nome,sala,id_turma, id_professor) values ('matematica','101c',1,1);
+
+insert into aluno (nome,ra,email, senha) values ('Vinicius Lima', '817125437','teste1@teste.com', '123');
+
+insert into aluno (nome,ra,email, senha) values ('Gustavo Santos', '825478961','teste2@teste.com', '123');
+
+insert into token_chamada (token, ativo) values ('CHM4056106', true);

@@ -28,6 +28,10 @@ public class Chamada {
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
+	
+	@NotNull
+	private boolean presente;
+	
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="id_aluno")
@@ -38,10 +42,11 @@ public class Chamada {
 	@JoinColumn(name="id_materia")
 	private Materia materia;
 
-	public Chamada(Long id, @NotNull Date data, @NotNull Aluno aluno, @NotNull Materia materia) {
+	public Chamada(Long id, @NotNull Date data, @NotNull boolean presente, @NotNull Aluno aluno, @NotNull Materia materia) {
 		super();
 		this.id = id;
 		this.data = data;
+		this.presente = presente;
 		this.aluno = aluno;
 		this.materia = materia;
 	}
@@ -80,5 +85,15 @@ public class Chamada {
 	public void setMateria(Materia materia) {
 		this.materia = materia;
 	}
+	
+
+	public boolean getPresente() {
+		return presente;
+	}
+
+	public void setPresente(boolean presente) {
+		this.presente = presente;
+	}
+	
 
 }

@@ -57,7 +57,9 @@ public class Materia {
 	}
 
 
-
+	public Materia(String nome) {
+		this.nome = nome;
+	}
 	public Materia() {
 		
 	}
